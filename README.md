@@ -1,5 +1,8 @@
 # AnimeDaemon
 
+![AnimeTools](example.png "AnimeTools")
+  /\ comfy shit
+
 ## Dependencies:
 - Bash
 - Transmission-cli
