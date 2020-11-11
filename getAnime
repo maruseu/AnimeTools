@@ -1,0 +1,14 @@
+#!/bin/bash
+
+quality="\[720p\]"
+
+subber=""
+
+query="`echo "$@" | sed 's/ /+/g'`"
+
+iamnotlegallyallowedtopublicallyendorsepiracy=""
+
+magnet="`curl -s "${iamnotlegallyallowedtopublicallyendorsepiracy}/user/${subber}?f=0&c=0_0&q=${query}+${quality}" | grep -m 1 "magnet" | sed -e 's/.*<a href="//' -e 's/">.*//' -e 's/\&amp;/\&/g'`"
+
+echo "$magnet"
+#transmission-remote -a "$magnet"

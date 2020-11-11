@@ -1,0 +1,10 @@
+#!/bin/bash
+
+while true; do
+
+getAnime "$@"
+
+#sleep 1h
+# workaround for sleep, usleep and nanosleep fucking up in wsl
+ping -i3600 -c2 127.0.0.1 &>/dev/null
+done &
