@@ -1,22 +1,18 @@
 #!/bin/bash
 
-# Commando line arguments
-
-website="$1"
+website=""
+subber=""
 quality="$2" # Optional
-subber="$3"  # Optional
 
 # Check for quality, default is 720p
 if [ -n $quality ]; then
-    quality="\[720p\]"
-else
     quality="\[${quality}\]"
+else
+    quality="\[720p\]"
 fi
 
-query="$(echo "$@" | sed 's/ /+/g')"
+query="$(echo "$1" | sed 's/ /+/g')"
 
-iamnotlegallyallowedtopublicallyendorsepiracy="https://${website}"
-
-magnet="$(curl -s "${iamnotlegallyallowedtopublicallyendorsepiracy}/user/${subber}?f=0&c=0_0&q=${query}+${quality}" | grep -m 1 "magnet" | sed -e 's/.*<a href="//' -e 's/">.*//' -e 's/\&amp;/\&/g')"
+magnet="$(curl -s "${website}/user/${subber}?f=0&c=0_0&q=${query}+${quality}" | grep -m 1 "magnet" | sed -e 's/.*<a href="//' -e 's/">.*//' -e 's/\&amp;/\&/g')"
 
 transmission-remote -a "$magnet"
